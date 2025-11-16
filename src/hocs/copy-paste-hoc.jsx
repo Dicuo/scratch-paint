@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 
 import {
     clearSelection,
+    deleteSelection,
     getAllRootItems,
     getSelectedLeafItems,
     getSelectedRootItems
@@ -24,6 +25,7 @@ const CopyPasteHOC = function (WrappedComponent) {
             super(props);
             bindAll(this, [
                 'handleCopy',
+                'handleCut',
                 'handlePaste'
             ]);
         }
@@ -57,6 +59,13 @@ const CopyPasteHOC = function (WrappedComponent) {
                 clipboardItems.push(jsonItem);
             }
             this.props.setClipboardItems(clipboardItems);
+        }
+        handleCut () {
+            this.handleCopy();
+            // delete items
+            if (deleteSelection(this.props.mode, this.props.onUpdateImage)) {
+                clearSelection(this.props.clearSelectedItems);
+            }
         }
         handlePaste () {
             clearSelection(this.props.clearSelectedItems);
@@ -100,6 +109,7 @@ const CopyPasteHOC = function (WrappedComponent) {
             return (
                 <WrappedComponent
                     onCopyToClipboard={this.handleCopy}
+                    onCutToClipboard={this.handleCut}
                     onPasteFromClipboard={this.handlePaste}
                     {...componentProps}
                 />
