@@ -15,6 +15,8 @@ module.exports = {
         'import/no-commonjs': 'error',
         'import/no-amd': 'error',
         'import/no-nodejs-modules': 'error',
+        // PM: stop being annoying
+        'linebreak-style': 'off',
 
         // TW: ignore errors importing things from custom webpack loaders
         'import/no-unresolved': ['error', {
