@@ -193,18 +193,9 @@ $border-radius: 0.25rem;
 }
 
 @media only screen and (max-width: 101vw/*$full-size-paint*/) {
-    .editor-container {
-        padding: calc(3 * $grid-unit) $grid-unit;
-    }
-
     .mode-selector {
         flex-direction: column;
         justify-content: flex-start;
-    }
-
-    .controls-container {
-        margin-right: $grid-unit;
-        margin-left: $grid-unit;
     }
 }
 

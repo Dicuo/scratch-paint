@@ -171,27 +171,35 @@ const PaintEditorComponent = props => (
                     <LineMode
                         onUpdateImage={props.onUpdateImage}
                     />
-                    <OvalMode
-                        onUpdateImage={props.onUpdateImage}
-                    />
-                    <RectMode
-                        onUpdateImage={props.onUpdateImage}
+                    <MultiToolSelectComponent
+                        tools={[
+                            <RectMode
+                                onUpdateImage={props.onUpdateImage}
+                            />,
+                            <OvalMode
+                                onUpdateImage={props.onUpdateImage}
+                            />
+                        ]}
+                        modes={[
+                            Modes.RECT,
+                            Modes.OVAL
+                        ]}
                     />
                 </div>
             ) : null}
 
             {props.canvas !== null && isBitmap(props.format) ? ( // eslint-disable-line no-negated-condition
                 <div className={styles.modeSelector}>
+                    <BitSelectMode
+                        onUpdateImage={props.onUpdateImage}
+                    />
                     <BitBrushMode
                         onUpdateImage={props.onUpdateImage}
                     />
-                    <BitLineMode
+                    <BitEraserMode
                         onUpdateImage={props.onUpdateImage}
                     />
-                    <BitOvalMode
-                        onUpdateImage={props.onUpdateImage}
-                    />
-                    <BitRectMode
+                    <BitFillMode
                         onUpdateImage={props.onUpdateImage}
                     />
                     <TextMode
@@ -199,14 +207,22 @@ const PaintEditorComponent = props => (
                         textArea={props.textArea}
                         onUpdateImage={props.onUpdateImage}
                     />
-                    <BitFillMode
+                    <BitLineMode
                         onUpdateImage={props.onUpdateImage}
                     />
-                    <BitEraserMode
-                        onUpdateImage={props.onUpdateImage}
-                    />
-                    <BitSelectMode
-                        onUpdateImage={props.onUpdateImage}
+                    <MultiToolSelectComponent
+                        tools={[
+                            <BitRectMode
+                                onUpdateImage={props.onUpdateImage}
+                            />,
+                            <BitOvalMode
+                                onUpdateImage={props.onUpdateImage}
+                            />
+                        ]}
+                        modes={[
+                            Modes.BIT_RECT,
+                            Modes.BIT_OVAL
+                        ]}
                     />
                 </div>
             ) : null}

@@ -4,9 +4,11 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import styles from './multi-tool-select.css';
+import arrow from './arrow.svg';
 
 const MultiToolSelectComponent = props => (
     <div className={styles.multiTool} style={{"--index": Math.max(0, props.modes.indexOf(props.mode))}}>
+        <img alt="" className={classNames(styles.arrow, {[styles.selected]: props.modes.indexOf(props.mode) !== -1})} src={arrow} />
         <div className={styles.tools}>
             {props.tools.map((tool, index) => {
                 return (<div className={styles.tool}>
