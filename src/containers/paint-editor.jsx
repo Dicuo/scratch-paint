@@ -19,6 +19,7 @@ import {updateViewBounds} from '../reducers/view-bounds';
 import {setLayout} from '../reducers/layout';
 import {setTheme as setReduxTheme} from '../reducers/theme';
 import {setCustomFonts} from '../reducers/custom-fonts';
+import {setSettingsStore} from '../reducers/editor-settings-store';
 
 import {getSelectedLeafItems} from '../helper/selection';
 import {convertToBitmap, convertToVector} from '../helper/bitmap';
@@ -98,6 +99,7 @@ class PaintEditor extends React.Component {
         };
         this.props.setLayout(this.props.rtl ? 'rtl' : 'ltr');
         this.props.onCustomFontsChanged(this.props.customFonts);
+        if (this.props.settingsStore) this.props.onSettingsStoreChanged(this.props.settingsStore);
         resizeView(this.props.width, this.props.height);
     }
     componentDidMount () {
@@ -411,7 +413,10 @@ PaintEditor.propTypes = {
     height: PropTypes.number,
     updateViewBounds: PropTypes.func.isRequired,
     viewBounds: PropTypes.instanceOf(paper.Matrix).isRequired,
-    zoomLevelId: PropTypes.string
+    zoomLevelId: PropTypes.string,
+
+    onSettingsStoreChanged: PropTypes.func.isRequired,
+    settingsStore: PropTypes.object
 };
 
 PaintEditor.defaultProps = {
@@ -464,6 +469,10 @@ const mapDispatchToProps = dispatch => ({
     },
     updateViewBounds: matrix => {
         dispatch(updateViewBounds(matrix));
+    },
+
+    onSettingsStoreChanged: store => {
+        dispatch(setSettingsStore(store));
     }
 });
 

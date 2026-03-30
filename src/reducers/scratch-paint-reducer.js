@@ -28,6 +28,7 @@ import themeReducer from './theme';
 import viewBoundsReducer from './view-bounds';
 import undoReducer from './undo';
 import zoomLevelsReducer from './zoom-levels';
+import editorSettingsStoreReducer from './editor-settings-store';
 
 export default combineReducers({
     mode: modeReducer,
@@ -58,5 +59,7 @@ export default combineReducers({
     theme: themeReducer,
     undo: undoReducer,
     viewBounds: viewBoundsReducer,
-    zoomLevels: zoomLevelsReducer
+    zoomLevels: zoomLevelsReducer,
+
+    settingsStore: editorSettingsStoreReducer
 });
