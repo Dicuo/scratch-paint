@@ -43,6 +43,9 @@ import zoomOutIcon from './icons/zoom-out.svg';
 import zoomResetIcon from './icons/zoom-reset.svg';
 import themeIcon from './icons/theme.svg';
 
+import MultiToolSelectComponent from '../multi-tool-select/multi-tool-select.jsx';
+import Modes from '../../lib/modes';
+
 const messages = defineMessages({
     bitmap: {
         defaultMessage: 'Convert to Bitmap',
@@ -138,11 +141,19 @@ const PaintEditorComponent = props => (
             {/* Modes */}
             {props.canvas !== null && isVector(props.format) ? ( // eslint-disable-line no-negated-condition
                 <div className={styles.modeSelector}>
-                    <SelectMode
-                        onUpdateImage={props.onUpdateImage}
-                    />
-                    <ReshapeMode
-                        onUpdateImage={props.onUpdateImage}
+                    <MultiToolSelectComponent
+                        tools={[
+                            <SelectMode
+                                onUpdateImage={props.onUpdateImage}
+                            />,
+                            <ReshapeMode
+                                onUpdateImage={props.onUpdateImage}
+                            />
+                        ]}
+                        modes={[
+                            Modes.SELECT,
+                            Modes.RESHAPE
+                        ]}
                     />
                     <BrushMode
                         onUpdateImage={props.onUpdateImage}
