@@ -23,6 +23,7 @@ const ButtonComponent = ({
         // if not disabled, add `onClick()` to be applied
         // in props. If disabled, don't add `onClick()`
         props.onClick = onClick;
+        props.onContextMenu = e => {e.preventDefault(); onClick(e);};
     }
     return (
         <span

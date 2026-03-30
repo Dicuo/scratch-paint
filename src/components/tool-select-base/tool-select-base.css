@@ -37,7 +37,7 @@ img.tool-select-icon {
     filter: brightness(0) invert(1);
 }
 
-@media only screen and (max-width: $full-size-paint) {
+@media only screen and (max-width: 101vw/*$full-size-paint*/) {
     .mod-tool-select {
         margin: 0;
     }
