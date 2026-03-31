@@ -90,19 +90,21 @@ const setWorkspaceBounds = clipEmpty => {
 };
 
 const clampViewBounds = () => {
-    const {left, right, top, bottom} = paper.project.view.bounds;
-    if (left < _workspaceBounds.left) {
-        paper.project.view.scrollBy(new paper.Point(_workspaceBounds.left - left, 0));
+    console.log(_workspaceBounds, window.x = paper.project.view);
+    
+    if (paper.project.view.bounds.centerY > _workspaceBounds.bottom) {
+        paper.project.view.scrollBy(new paper.Point(0, _workspaceBounds.bottom - paper.project.view.bounds.centerY));
     }
-    if (top < _workspaceBounds.top) {
-        paper.project.view.scrollBy(new paper.Point(0, _workspaceBounds.top - top));
+    if (paper.project.view.bounds.centerX > _workspaceBounds.right) {
+        paper.project.view.scrollBy(new paper.Point(_workspaceBounds.right - paper.project.view.bounds.centerX, 0));
     }
-    if (bottom > _workspaceBounds.bottom) {
-        paper.project.view.scrollBy(new paper.Point(0, _workspaceBounds.bottom - bottom));
+    if (paper.project.view.bounds.centerY < _workspaceBounds.top) {
+        paper.project.view.scrollBy(new paper.Point(0, _workspaceBounds.top - paper.project.view.bounds.centerY));
     }
-    if (right > _workspaceBounds.right) {
-        paper.project.view.scrollBy(new paper.Point(_workspaceBounds.right - right, 0));
+    if (paper.project.view.bounds.centerX < _workspaceBounds.left) {
+        paper.project.view.scrollBy(new paper.Point(_workspaceBounds.left - paper.project.view.bounds.centerX, 0));
     }
+
     setWorkspaceBounds();
 };
 

@@ -177,8 +177,8 @@ class ScrollableCanvas extends React.Component {
             heightPercent = Math.min(100, 100 * height / bounds.height);
             const centerX = (x + (width / 2) - bounds.x) / bounds.width;
             const centerY = (y + (height / 2) - bounds.y) / bounds.height;
-            topPercent = Math.max(0, (100 * centerY) - (heightPercent / 2));
-            leftPercent = Math.max(0, (100 * centerX) - (widthPercent / 2));
+            topPercent = Math.min(Math.max(0, (100 * centerY) - (heightPercent / 2)), 100 - heightPercent);
+            leftPercent = Math.min(Math.max(0, (100 * centerX) - (widthPercent / 2)), 100 - widthPercent);
         }
         return (
             <ScrollableCanvasComponent
