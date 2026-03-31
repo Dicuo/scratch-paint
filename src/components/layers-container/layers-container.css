@@ -1,0 +1,42 @@
+@import "../../css/colors.css";
+
+.layers-container {
+    width: 308px;
+    border: 1px solid $ui-pane-border;
+    border-radius: .25rem;
+    padding: 8px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.layer {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.layer > .info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    border-radius: 0.25rem;
+    transition: 0.1s ease;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.layer.active > .info {
+    background: $looks-secondary;
+    color: #fff;
+}
+
+.layer.active > .info img {
+    filter: brightness(0) invert(1);
+}
+
+.layer > .layer {
+    margin-left: 16px;
+}
