@@ -3,6 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import bindAll from 'lodash.bindall';
 import classNames from 'classnames';
+import paper from '@turbowarp/paper';
 
 import styles from './layers-container.css';
 import placeholderImage from '../rect-mode/rectangle.svg';
@@ -15,9 +16,18 @@ class LayersContainer extends React.Component {
         ]);
     }
     render () {
+        const renderLayer = layer => (<div className={classNames(styles.layer, {[styles.active]: false})}>
+            <div className={styles.info}>
+                <img alt="" src={placeholderImage} />
+                <span>{layer.name ?? <i>{layer.className}</i>}</span>
+            </div>
+            {(layer.getChildren() || []).map(renderLayer)}
+        </div>);
+
         return (
             <div className={styles.layersContainer}>
-                <div className={styles.layer}>
+                {paper.project && paper.project.getActiveLayer().getChildren().map(renderLayer)}
+                {/*<div className={styles.layer}>
                     <div className={styles.info}>
                         <img alt="" src={placeholderImage} />
                         <span>Layer</span>
@@ -46,7 +56,7 @@ class LayersContainer extends React.Component {
                             <span>Layer</span>
                         </div>
                     </div>
-                </div>
+                </div>*/}
             </div>
         );
     }
@@ -63,7 +73,4 @@ const mapDispatchToProps = dispatch => ({
 
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(LayersContainer);
+export default LayersContainer;
