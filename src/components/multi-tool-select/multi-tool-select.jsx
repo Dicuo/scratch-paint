@@ -6,17 +6,32 @@ import PropTypes from 'prop-types';
 import styles from './multi-tool-select.css';
 import arrow from './arrow.svg';
 
-const MultiToolSelectComponent = props => {
-    if (props.settingsStore && props.settingsStore.store.paintMultiTool === false) return (<React.Fragment>{props.tools}</React.Fragment>);
-    return (<div className={styles.multiTool} style={{"--index": Math.max(0, props.modes.indexOf(props.mode))}}>
-        <img alt="" className={classNames(styles.arrow, {[styles.selected]: props.modes.indexOf(props.mode) !== -1})} src={arrow} />
-        <div className={styles.tools}>
-            {props.tools.map(tool => <div className={styles.tool}>
-                {tool}
-            </div>)}
-        </div>
-    </div>);
-};
+class MultiToolSelectComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.indexCache = null;
+    }
+
+    render() {
+        if (this.props.settingsStore && this.props.settingsStore.store.paintMultiTool === false){
+            return (<React.Fragment>{this.props.tools}</React.Fragment>);
+        }
+
+        let index = this.props.modes.indexOf(this.props.mode);
+        let isSelected = index !== -1;
+        if (index === -1) index = this.indexCache ?? 0;
+        else this.indexCache = index;
+
+        return (<div className={classNames(styles.multiTool, {[styles.selected]: isSelected})} style={{"--index": index}}>
+            <img alt="" className={styles.arrow} src={arrow} />
+            <div className={styles.tools}>
+                {this.props.tools.map(tool => <div className={styles.tool}>
+                    {tool}
+                </div>)}
+            </div>
+        </div>);
+    }
+}
 
 MultiToolSelectComponent.propTypes = {
     tools: PropTypes.arrayOf(PropTypes.element).isRequired,

@@ -21,7 +21,7 @@
     margin-left: calc((40px + 2 * $grid-unit) * var(--index) * -1);
 }
 
-.multiTool:hover .tools {
+.multiTool.selected:hover .tools {
     width: auto;
     --index: 0;
     background-color: $ui-pane-border;
@@ -37,10 +37,10 @@
     filter: $filter-icon-gray;
 }
 
-.arrow.selected {
+.selected .arrow {
     filter: brightness(0) invert(1);
 }
 
-.multiTool:hover .arrow {
+.multiTool.selected:hover .arrow {
     display: none;
 }
