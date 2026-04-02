@@ -46,6 +46,7 @@ import themeIcon from './icons/theme.svg';
 import MultiToolSelectComponent from '../multi-tool-select/multi-tool-select.jsx';
 import Modes from '../../lib/modes';
 import LassoMode from '../../containers/lasso-mode.jsx';
+import BitLassoMode from '../../containers/bit-lasso-mode.jsx';
 
 const messages = defineMessages({
     bitmap: {
@@ -195,8 +196,19 @@ const PaintEditorComponent = props => (
 
             {props.canvas !== null && isBitmap(props.format) ? ( // eslint-disable-line no-negated-condition
                 <div className={styles.modeSelector}>
-                    <BitSelectMode
-                        onUpdateImage={props.onUpdateImage}
+                    <MultiToolSelectComponent
+                        tools={[
+                            <BitSelectMode
+                                onUpdateImage={props.onUpdateImage}
+                            />,
+                            <BitLassoMode
+                                onUpdateImage={props.onUpdateImage}
+                            />
+                        ]}
+                        modes={[
+                            Modes.BIT_SELECT,
+                            Modes.BIT_LASSO
+                        ]}
                     />
                     <BitBrushMode
                         onUpdateImage={props.onUpdateImage}

@@ -199,6 +199,7 @@ const ModeToolsComponent = props => {
             </div>
         );
     case Modes.BIT_SELECT:
+    case Modes.BIT_LASSO:
         /* falls through */
     case Modes.SELECT:
     case Modes.LASSO:

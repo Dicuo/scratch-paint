@@ -185,6 +185,9 @@ class PaintEditor extends React.Component {
             case Modes.BIT_SELECT:
                 this.props.changeMode(Modes.SELECT);
                 break;
+            case Modes.BIT_LASSO:
+                this.props.changeMode(Modes.LASSO);
+                break;
             default:
                 log.error(`Mode not handled: ${this.props.mode}`);
                 this.props.changeMode(Modes.BRUSH);
@@ -216,6 +219,9 @@ class PaintEditor extends React.Component {
                 /* falls through */
             case Modes.SELECT:
                 this.props.changeMode(Modes.BIT_SELECT);
+                break;
+            case Modes.LASSO:
+                this.props.changeMode(Modes.BIT_LASSO);
                 break;
             default:
                 log.error(`Mode not handled: ${this.props.mode}`);

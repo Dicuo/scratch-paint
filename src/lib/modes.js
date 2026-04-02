@@ -25,7 +25,8 @@ const bitmapModesObj = {
     BIT_TEXT: null,
     BIT_FILL: null,
     BIT_ERASER: null,
-    BIT_SELECT: null
+    BIT_SELECT: null,
+    BIT_LASSO: null
 };
 const VectorModes = keyMirror(vectorModesObj);
 const BitmapModes = keyMirror(bitmapModesObj);
