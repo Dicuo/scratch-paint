@@ -201,6 +201,7 @@ const ModeToolsComponent = props => {
     case Modes.BIT_SELECT:
         /* falls through */
     case Modes.SELECT:
+    case Modes.LASSO:
         return (
             <div className={classNames(props.className, styles.modeTools)}>
                 <InputGroup className={classNames(styles.modDashedBorder, styles.modLabeledIconHeight)}>

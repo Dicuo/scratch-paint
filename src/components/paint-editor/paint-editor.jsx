@@ -45,6 +45,7 @@ import themeIcon from './icons/theme.svg';
 
 import MultiToolSelectComponent from '../multi-tool-select/multi-tool-select.jsx';
 import Modes from '../../lib/modes';
+import LassoMode from '../../containers/lasso-mode.jsx';
 
 const messages = defineMessages({
     bitmap: {
@@ -146,12 +147,16 @@ const PaintEditorComponent = props => (
                             <SelectMode
                                 onUpdateImage={props.onUpdateImage}
                             />,
+                            <LassoMode
+                                onUpdateImage={props.onUpdateImage}
+                            />,
                             <ReshapeMode
                                 onUpdateImage={props.onUpdateImage}
                             />
                         ]}
                         modes={[
                             Modes.SELECT,
+                            Modes.LASSO,
                             Modes.RESHAPE
                         ]}
                     />

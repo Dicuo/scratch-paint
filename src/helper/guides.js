@@ -64,6 +64,19 @@ const rectSelect = function (event, color) {
     return rect;
 };
 
+const lassoSelect = function (points, color) {
+    const path = new paper.Path(points);
+    setDefaultGuideStyle(path);
+    if (!color) color = GUIDE_GREY;
+    path.parent = getGuideLayer();
+    path.closed = true;
+    path.strokeColor = color;
+    path.data.isLassoSelect = true;
+    path.data.isHelperItem = true;
+    path.dashArray = [3.0 / paper.view.zoom, 3.0 / paper.view.zoom];
+    return path;
+}
+
 const getGuideColor = function () {
     return GUIDE_BLUE;
 };
@@ -123,6 +136,7 @@ export {
     hoverItem,
     hoverBounds,
     rectSelect,
+    lassoSelect,
     removeAllGuides,
     removeBoundsHandles,
     removeBoundsPath,
