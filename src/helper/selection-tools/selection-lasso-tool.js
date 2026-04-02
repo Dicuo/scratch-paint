@@ -35,10 +35,10 @@ class SelectionLassoTool {
         if (this.selectionPath) {
             this.selectionPath.remove();
         }
+        this.selectionPath = lassoSelect([...this.points, event.point]);
         if (this.points[this.points.length - 1].getDistance(event.point) >= this.minDistance) {
             this.points.push(event.point);
         }
-        this.selectionPath = lassoSelect(this.points);
 
     }
     onMouseUpVector (event) {
