@@ -346,6 +346,7 @@ const PaintEditorComponent = props => (
                                     src={zoomInIcon}
                                 />
                             </Button>
+                            <span style={{ paddingTop: "0.55rem" }} className={styles.buttonGroupButton}>{paper.project ? Math.round(paper.project.view.zoom * 200) : 100}%</span>
                         </ButtonGroup>
                         <ButtonGroup>
                             <Button
