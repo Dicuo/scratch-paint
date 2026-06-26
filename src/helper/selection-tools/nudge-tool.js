@@ -45,7 +45,6 @@ class NudgeTool {
         let translation;
         if (event.modifiers.control) {
             const bounds = ART_BOARD_BOUNDS;
-            console.log(bounds);
             const bottom = bounds.bottom - (event.modifiers.shift ? rect.top : rect.bottom);
             const top = bounds.top - (event.modifiers.shift ? rect.bottom : rect.top);
             const left = bounds.left - (event.modifiers.shift ? rect.right : rect.left);
