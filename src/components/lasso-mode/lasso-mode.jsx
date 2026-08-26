@@ -5,7 +5,7 @@ import ToolSelectComponent from '../tool-select-base/tool-select-base.jsx';
 
 import lassoIcon from './lasso.svg';
 
-const SelectModeComponent = props => (
+const LassoModeComponent = props => (
     <ToolSelectComponent
         imgDescriptor={messages.lasso}
         imgSrc={lassoIcon}
@@ -14,9 +14,9 @@ const SelectModeComponent = props => (
     />
 );
 
-SelectModeComponent.propTypes = {
+LassoModeComponent.propTypes = {
     isSelected: PropTypes.bool.isRequired,
     onMouseDown: PropTypes.func.isRequired
 };
 
-export default SelectModeComponent;
+export default LassoModeComponent;

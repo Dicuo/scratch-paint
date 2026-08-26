@@ -1,21 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ToolSelectComponent from '../tool-select-base/tool-select-base.jsx';
 import messages from '../../lib/messages.js';
-import lassoIcon from './lasso.svg';
+import ToolSelectComponent from '../tool-select-base/tool-select-base.jsx';
 
-const BitLassoComponent = props => (
+import panIcon from './pan.svg';
+
+const BitPanComponent = props => (
     <ToolSelectComponent
-        imgDescriptor={messages.lasso}
-        imgSrc={lassoIcon}
+        imgDescriptor={messages.pan}
+        imgSrc={panIcon}
         isSelected={props.isSelected}
         onMouseDown={props.onMouseDown}
     />
 );
 
-BitLassoComponent.propTypes = {
+BitPanComponent.propTypes = {
     isSelected: PropTypes.bool.isRequired,
     onMouseDown: PropTypes.func.isRequired
 };
 
-export default BitLassoComponent;
+export default BitPanComponent;

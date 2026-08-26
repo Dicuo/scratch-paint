@@ -188,8 +188,11 @@ class PaintEditor extends React.Component {
             case Modes.BIT_LASSO:
                 this.props.changeMode(Modes.LASSO);
                 break;
+            case Modes.BIT_PAN:
+                this.props.changeMode(Modes.PAN);
+                break;
             default:
-                log.error(`Mode not handled: ${this.props.mode}`);
+                log.warn(`Mode not handled: ${this.props.mode}`);
                 this.props.changeMode(Modes.BRUSH);
             }
         } else if (isBitmap(newFormat)) {
@@ -222,6 +225,9 @@ class PaintEditor extends React.Component {
                 break;
             case Modes.LASSO:
                 this.props.changeMode(Modes.BIT_LASSO);
+                break;
+            case Modes.PAN:
+                this.props.changeMode(Modes.BIT_PAN);
                 break;
             default:
                 log.error(`Mode not handled: ${this.props.mode}`);

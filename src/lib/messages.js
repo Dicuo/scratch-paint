@@ -70,6 +70,11 @@ const messages = defineMessages({
         defaultMessage: 'Lasso',
         description: 'Label for the lasso tool',
         id: 'pm.paint.lassoMode.lasso'
+    },
+    pan: {
+        defaultMessage: 'Pan',
+        description: 'Label for the pan tool',
+        id: 'pm.paint.panMode.pan'
     }
 });
 

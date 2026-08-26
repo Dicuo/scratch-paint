@@ -30,6 +30,10 @@ import OvalMode from '../../containers/oval-mode.jsx';
 import RectMode from '../../containers/rect-mode.jsx';
 import ReshapeMode from '../../containers/reshape-mode.jsx';
 import SelectMode from '../../containers/select-mode.jsx';
+import LassoMode from '../../containers/lasso-mode.jsx';
+import BitLassoMode from '../../containers/bit-lasso-mode.jsx';
+import PanMode from '../../containers/pan-mode.jsx';
+import BitPanMode from '../../containers/bit-pan-mode.jsx';
 import StrokeColorIndicatorComponent from '../../containers/stroke-color-indicator.jsx';
 import StrokeWidthIndicatorComponent from '../../containers/stroke-width-indicator.jsx';
 import TextMode from '../../containers/text-mode.jsx';
@@ -45,8 +49,6 @@ import themeIcon from './icons/theme.svg';
 
 import MultiToolSelectComponent from '../multi-tool-select/multi-tool-select.jsx';
 import Modes from '../../lib/modes';
-import LassoMode from '../../containers/lasso-mode.jsx';
-import BitLassoMode from '../../containers/bit-lasso-mode.jsx';
 
 const messages = defineMessages({
     bitmap: {
@@ -161,6 +163,7 @@ const PaintEditorComponent = props => (
                             Modes.RESHAPE
                         ]}
                     />
+                    <PanMode />
                     <BrushMode
                         onUpdateImage={props.onUpdateImage}
                     />
@@ -210,6 +213,7 @@ const PaintEditorComponent = props => (
                             Modes.BIT_LASSO
                         ]}
                     />
+                    <BitPanMode />
                     <BitBrushMode
                         onUpdateImage={props.onUpdateImage}
                     />

@@ -9,6 +9,7 @@ const vectorModesObj = {
     SELECT: null,
     RESHAPE: null,
     LASSO: null,
+    PAN: null,
     OVAL: null,
     RECT: null,
     ROUNDED_RECT: null,
@@ -26,7 +27,8 @@ const bitmapModesObj = {
     BIT_FILL: null,
     BIT_ERASER: null,
     BIT_SELECT: null,
-    BIT_LASSO: null
+    BIT_LASSO: null,
+    BIT_PAN: null
 };
 const VectorModes = keyMirror(vectorModesObj);
 const BitmapModes = keyMirror(bitmapModesObj);
