@@ -39,7 +39,7 @@ const messages = defineMessages({
     roundedRect: {
         defaultMessage: 'Rounded Rectangle',
         description: 'Label for the rounded rectangle tool',
-        id: 'paint.roundedRectMode.roundedRect'
+        id: 'pm.paint.roundedRectMode.roundedRect'
     },
     select: {
         defaultMessage: 'Select',
@@ -54,17 +54,27 @@ const messages = defineMessages({
     sussy: {
         defaultMessage: 'Shapes',
         description: 'Label for the shape tool',
-        id: 'paint.shapeMode.shape'
+        id: 'pm.paint.shapeMode.shape'
     },
     triangle: {
         defaultMessage: 'Triangle',
         description: 'Label for the triangle tool',
-        id: 'paint.triangleMode.triangle'
+        id: 'pm.paint.triangleMode.triangle'
     },
     arrow: {
         defaultMessage: 'Arrow',
         description: 'Label for the arrow tool',
-        id: 'paint.arrowMode.arrow'
+        id: 'pm.paint.arrowMode.arrow'
+    },
+    lasso: {
+        defaultMessage: 'Lasso',
+        description: 'Label for the lasso tool',
+        id: 'pm.paint.lassoMode.lasso'
+    },
+    pan: {
+        defaultMessage: 'Pan',
+        description: 'Label for the pan tool',
+        id: 'pm.paint.panMode.pan'
     }
 });
 

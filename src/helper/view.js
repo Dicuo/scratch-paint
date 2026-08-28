@@ -90,8 +90,6 @@ const setWorkspaceBounds = clipEmpty => {
 };
 
 const clampViewBounds = () => {
-    console.log(_workspaceBounds, window.x = paper.project.view);
-    
     if (paper.project.view.bounds.centerY > _workspaceBounds.bottom) {
         paper.project.view.scrollBy(new paper.Point(0, _workspaceBounds.bottom - paper.project.view.bounds.centerY));
     }

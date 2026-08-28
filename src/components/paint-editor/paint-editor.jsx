@@ -30,6 +30,10 @@ import OvalMode from '../../containers/oval-mode.jsx';
 import RectMode from '../../containers/rect-mode.jsx';
 import ReshapeMode from '../../containers/reshape-mode.jsx';
 import SelectMode from '../../containers/select-mode.jsx';
+import LassoMode from '../../containers/lasso-mode.jsx';
+import BitLassoMode from '../../containers/bit-lasso-mode.jsx';
+import PanMode from '../../containers/pan-mode.jsx';
+import BitPanMode from '../../containers/bit-pan-mode.jsx';
 import StrokeColorIndicatorComponent from '../../containers/stroke-color-indicator.jsx';
 import StrokeWidthIndicatorComponent from '../../containers/stroke-width-indicator.jsx';
 import TextMode from '../../containers/text-mode.jsx';
@@ -147,15 +151,20 @@ const PaintEditorComponent = props => (
                             <SelectMode
                                 onUpdateImage={props.onUpdateImage}
                             />,
+                            <LassoMode
+                                onUpdateImage={props.onUpdateImage}
+                            />,
                             <ReshapeMode
                                 onUpdateImage={props.onUpdateImage}
                             />
                         ]}
                         modes={[
                             Modes.SELECT,
+                            Modes.LASSO,
                             Modes.RESHAPE
                         ]}
                     />
+                    <PanMode />
                     <BrushMode
                         onUpdateImage={props.onUpdateImage}
                     />
@@ -191,9 +200,21 @@ const PaintEditorComponent = props => (
 
             {props.canvas !== null && isBitmap(props.format) ? ( // eslint-disable-line no-negated-condition
                 <div className={styles.modeSelector}>
-                    <BitSelectMode
-                        onUpdateImage={props.onUpdateImage}
+                    <MultiToolSelectComponent
+                        tools={[
+                            <BitSelectMode
+                                onUpdateImage={props.onUpdateImage}
+                            />,
+                            <BitLassoMode
+                                onUpdateImage={props.onUpdateImage}
+                            />
+                        ]}
+                        modes={[
+                            Modes.BIT_SELECT,
+                            Modes.BIT_LASSO
+                        ]}
                     />
+                    <BitPanMode />
                     <BitBrushMode
                         onUpdateImage={props.onUpdateImage}
                     />
@@ -330,6 +351,7 @@ const PaintEditorComponent = props => (
                                     src={zoomInIcon}
                                 />
                             </Button>
+                            <span style={{ paddingTop: "0.55rem" }} className={styles.buttonGroupButton}>{paper.project ? Math.round(paper.project.view.zoom * 200) : 100}%</span>
                         </ButtonGroup>
                         <ButtonGroup>
                             <Button
