@@ -5,6 +5,7 @@ import bindAll from 'lodash.bindall';
 import classNames from 'classnames';
 import paper from '@turbowarp/paper';
 import {setSelectedItems} from '../../reducers/selected-items';
+import {getSelectedLeafItems, setItemSelection} from '../../helper/selection';
 
 import styles from './layers-container.css';
 import placeholderImage from '../rect-mode/rectangle.svg';
@@ -13,17 +14,22 @@ class LayersContainer extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
+            'isSelected',
+            'renderLayer',
             'selectLayer',
-            'renderLayer'
+            'topLevelLayers'
         ]);
     }
 
-    selectLayer (layer) {
-        this.props.setSelectedItems([layer]);
+    isSelected (layer) {
+        if (this.props.selectedItems.includes(layer)) return true;
+        const children = layer.getChildren();
+        if (!children) return false;
+        return children.every(this.isSelected);
     }
 
     renderLayer (layer) {
-        return (<div className={classNames(styles.layer, {[styles.active]: this.props.selectedItems.includes(layer)})}>
+        return (<div className={classNames(styles.layer, {[styles.active]: this.isSelected(layer)})}>
             <div className={styles.info} onClick={() => this.selectLayer(layer)}>
                 <img alt="" src={placeholderImage} />
                 <span>{layer.name ?? <i>{layer.className}</i>}</span>
@@ -32,10 +38,22 @@ class LayersContainer extends React.Component {
         </div>);
     }
 
+    selectLayer (layer) {
+        paper.project.deselectAll();
+        setItemSelection(layer, true);
+        this.props.setSelectedItems();
+    }
+
+    topLevelLayers () {
+        let layers = paper.project.getActiveLayer().getChildren();
+        layers = layers.filter(v => !v.guide);
+        return layers;
+    }
+
     render () {
         return (
             <div className={styles.layersContainer}>
-                {paper.project && paper.project.getActiveLayer().getChildren().map(this.renderLayer)}
+                {paper.project && this.topLevelLayers().map(this.renderLayer)}
                 {/*<div className={styles.layer}>
                     <div className={styles.info}>
                         <img alt="" src={placeholderImage} />
@@ -80,8 +98,8 @@ const mapStateToProps = state => ({
     selectedItems: state.scratchPaint.selectedItems,
 });
 const mapDispatchToProps = dispatch => ({
-    setSelectedItems: (items) => {
-        dispatch(setSelectedItems(items));
+    setSelectedItems: () => {
+        dispatch(setSelectedItems(getSelectedLeafItems(), false));
     }
 });
 
