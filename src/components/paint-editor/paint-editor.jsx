@@ -34,6 +34,7 @@ import LassoMode from '../../containers/lasso-mode.jsx';
 import BitLassoMode from '../../containers/bit-lasso-mode.jsx';
 import PanMode from '../../containers/pan-mode.jsx';
 import BitPanMode from '../../containers/bit-pan-mode.jsx';
+import FreeformMode from '../../containers/freeform-mode.jsx';
 import StrokeColorIndicatorComponent from '../../containers/stroke-color-indicator.jsx';
 import StrokeWidthIndicatorComponent from '../../containers/stroke-width-indicator.jsx';
 import TextMode from '../../containers/text-mode.jsx';
@@ -177,8 +178,19 @@ const PaintEditorComponent = props => (
                         textArea={props.textArea}
                         onUpdateImage={props.onUpdateImage}
                     />
-                    <LineMode
-                        onUpdateImage={props.onUpdateImage}
+                    <MultiToolSelectComponent
+                        tools={[
+                            <LineMode
+                                onUpdateImage={props.onUpdateImage}
+                            />,
+                            <FreeformMode
+                                onUpdateImage={props.onUpdateImage}
+                            />
+                        ]}
+                        modes={[
+                            Modes.LINE,
+                            Modes.FREEFORM
+                        ]}
                     />
                     <MultiToolSelectComponent
                         tools={[
